@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Fork</string>
+    <string name="average_price">Prix moyen %d%s</string>
+    <string name="average_rate">%.1f/10</string>
+    <string name="rate_count">%d avis</string>
+    <string name="trip_advisor_rate_count">@string/rate_count</string>
+    <string name="title_menu">Carte du restaurant</string>
+    <string name="subtitle_menu">Extrait de la carte</string>
+    <string name="subtitle_menu_chef">Extrait de la carte du chef %s</string>
+    <string name="dish_price">%.0f%s</string>
+    <string name="reviews_title"><![CDATA[Notes & avis]]></string>
+    <string name="reviews_counts">Basé sur </string>
+    <string name="restaurant_book">Réserver</string>
+</resources>

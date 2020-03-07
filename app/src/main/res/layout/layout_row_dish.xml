@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.kris.fork.domain.entity.Dish" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textViewDishName"
+            style="@style/Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/keyline_4"
+            app:layout_constraintEnd_toStartOf="@id/textViewDishPrice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@{item.name}"
+            app:layout_constraintHorizontal_bias="0"
+            tools:text="Le thon germon mariné à la bergamote, caponata d'aubergines, pistou d'ail des ours" />
+
+        <TextView
+            android:id="@+id/textViewDishPrice"
+            style="@style/Info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:text="@{item.price == null ? null : @string/dish_price(item.price, item.currency.symbol)}"
+            tools:text="21€" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

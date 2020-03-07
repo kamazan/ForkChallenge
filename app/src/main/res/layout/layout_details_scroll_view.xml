@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.kris.fork.features.details.RestaurantDetailsViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_anchor="@id/appBarLayout"
+        app:layout_anchorGravity="bottom|end"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/keyline_9">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/standard_horizontal_margin"
+                android:paddingTop="@dimen/standard_vertical_margin"
+                android:paddingEnd="@dimen/standard_horizontal_margin"
+                android:paddingBottom="@dimen/standard_vertical_margin"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <TextView
+                    android:id="@+id/textViewSpeciality"
+                    style="@style/Info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.restaurant.speciality}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Français" />
+
+                <TextView
+                    android:id="@+id/textViewAveragePrice"
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewSpeciality"
+                    app:text="@{@string/average_price(viewModel.restaurant.cardPrice, viewModel.restaurant.currency.symbol)}"
+                    tools:text="Prix moyen 45€" />
+
+                <TextView
+                    android:id="@+id/textViewRate"
+                    style="@style/Rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:text="@{@string/average_rate(viewModel.restaurant.averageRate)}"
+                    app:visible="@{viewModel.displayReviews}"
+                    tools:text="8,8/10" />
+
+                <TextView
+                    android:id="@+id/textViewRateCount"
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@id/textViewRate"
+                    app:layout_constraintTop_toBottomOf="@id/textViewRate"
+                    app:text="@{@string/rate_count(viewModel.restaurant.rateCount)}"
+                    app:visible="@{viewModel.displayReviews}"
+                    tools:text="43 avis" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <View
+                android:id="@+id/viewDividerHeader"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/standard_vertical_margin"
+                android:background="@color/colorDivider"
+                app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/standard_horizontal_margin"
+                android:paddingTop="@dimen/standard_vertical_margin"
+                android:paddingEnd="@dimen/standard_horizontal_margin"
+                app:layout_constraintTop_toBottomOf="@id/viewDividerHeader">
+
+                <TextView
+                    android:id="@+id/textViewSubtitleMenu"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/standard_vertical_margin"
+                    android:text="@{viewModel.restaurant.chefName != null ? @string/subtitle_menu_chef(viewModel.restaurant.chefName) : @string/subtitle_menu }"
+                    tools:text="@string/subtitle_menu" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewTags"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutReviews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/keyline_2"
+                    app:visible="@{viewModel.displayReviews}">
+
+                    <TextView
+                        android:id="@+id/textViewTitleReviews"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/reviews_title"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textViewReviews"
+                        style="@style/Rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/keyline_2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textViewTitleReviews"
+                        app:text="@{@string/average_rate(viewModel.restaurant.averageRate)}"
+                        tools:text="8,8/10" />
+
+                    <TextView
+                        android:id="@+id/textViewReviewsCount"
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textViewReviews"
+                        app:text="@{@string/rate_count(viewModel.restaurant.rateCount)}"
+                        tools:text="43 avis" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/keyline_2">
+
+                    <ImageView
+                        android:id="@+id/imageViewTripAdvisorReviews"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:url="@{viewModel.restaurant.tripAdvisorRateImageUrl}"
+                        tools:background="@color/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/keyline_2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/imageViewTripAdvisorReviews"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:text="@{@string/trip_advisor_rate_count(viewModel.restaurant.tripAdvisorRateCount)}"
+                        tools:text="14563 avis" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

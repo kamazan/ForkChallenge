@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Body" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/rubik_light</item>
+        <item name="android:textSize">@dimen/body_text</item>
+        <item name="android:textColor">@color/colorTextBody</item>
+    </style>
+
+    <style name="Subtitle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/rubik_medium</item>
+        <item name="android:textSize">@dimen/body_text</item>
+        <item name="android:textColor">@color/colorTextBody</item>
+    </style>
+
+    <style name="H1" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/rubik_medium</item>
+        <item name="android:textSize">@dimen/large_text</item>
+        <item name="android:textColor">@color/colorOnPrimary</item>
+    </style>
+
+    <style name="H3" parent="H1">
+        <item name="android:textSize">@dimen/medium_text</item>
+    </style>
+
+    <style name="Info" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/rubik_regular</item>
+        <item name="android:textSize">@dimen/body_text</item>
+        <item name="android:textColor">@color/colorTextBody</item>
+    </style>
+
+    <style name="Title" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/rubik_medium</item>
+        <item name="android:textSize">@dimen/medium_text</item>
+        <item name="android:textColor">@color/colorTextBody</item>
+    </style>
+
+    <style name="Rating" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/rubik_medium</item>
+        <item name="android:textSize">@dimen/big_text</item>
+        <item name="android:textColor">@color/colorTextBody</item>
+    </style>
+
+
+    <style name="ButtonPrimary" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/rubik_regular</item>
+        <item name="android:textSize">@dimen/body_text</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+</resources>

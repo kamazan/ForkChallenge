@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.kris.fork.features.details.RestaurantDetailsViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/details_header_height">
+
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:collapsedTitleTextAppearance="@style/H3"
+                app:contentScrim="@color/colorPrimary"
+                app:expandedTitleGravity="bottom|start"
+                app:expandedTitleMarginBottom="@dimen/keyline_5"
+                app:expandedTitleTextAppearance="@style/H3"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:title="@{viewModel.restaurant.name}"
+                tools:title="1K - Hotel Restaurant">
+
+                <include
+                    layout="@layout/layout_carousel"
+                    app:layout_collapseMode="parallax" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize">
+
+
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <include
+            android:id="@+id/scrollView"
+            layout="@layout/layout_details_scroll_view"
+            app:layout_anchor="@id/appBarLayout"
+            app:viewModel="@{viewModel}" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            style="@style/AppTheme.ExtendedFabButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/keyline_1"
+            app:visible="@{viewModel.restaurant.isAffiliate}"
+            android:text="@string/restaurant_book"
+            app:layout_anchor="@id/scrollView"
+            app:layout_anchorGravity="bottom|center" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
